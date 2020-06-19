@@ -1,0 +1,137 @@
+.todo-list li .editB {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    color: #cc9a9a;
+    margin: auto 0;
+    transition: color 0.2s ease-out;
+}
+
+.todo-list li .destroy{
+    margin-bottom: auto;
+}
+
+.todo-list li .editB:hover {
+    color: #af5b5e;
+}
+
+.todo-list li .editB:after {
+    content: '+';
+}
+
+.todo-list li:hover .editB {
+    display: block;
+}
+
+.todo-count{
+    float: none;
+}
+
+.filters{
+    padding: 1rem;
+    position: static;
+    text-align: center;
+}
+
+.filtersC{
+    padding: 0;
+    position: relative;
+    list-style: none;
+    right: 0;
+    left: 0;
+    text-align: center;
+}
+
+.filtersC li{
+    display: inline;
+}
+
+.filtersC li a{
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.filtersC li a.selected{
+    font-weight: bold;
+}
+
+.footer{
+    height: auto;
+    min-height: 20px;
+}
+
+.form-inline{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.todo-list li{
+    font-size: 20px;
+}
+
+.new-todo{
+    width: auto;
+}
+
+.edit{
+    width: 95%;
+}
+
+.createdOn-todo{
+    margin-top: .2rem;
+}
+
+.new-todo, .edit{
+    font-size: 20px;
+}
+
+.todo-list li .todo-date{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 16px;
+    padding: 19px 0;
+    margin-right: 1.45rem;
+}
+
+.todo-list li.completed .todo-date {
+    color: #4d4d4d;
+    text-decoration: none;
+}
+
+.todo-list li label{
+    display: inline-block;
+}
+
+.todo-list li:hover .todo-date{
+    display: none;
+}
+
+@media (max-width: 767px){
+    .toggle-all + label {
+        top: -75px;
+    }
+
+    .form-inline {
+        flex-direction: column;
+    }
+
+    .form-inline input {
+        margin: 10px 0;
+    }
+
+    .mobile{
+        display: none;
+    }
+}

@@ -6,7 +6,7 @@
     "url": "git+https://github.com/blacksonic/todomvc-react-hooks.git"
   },
   "scripts": {
-    "start": "PORT=9300 BROWSER=none react-scripts start",
+    "start": "set PORT=9300 && react-scripts start",
     "build": "CI=false react-scripts build",
     "format": "prettier --write 'src/**/*.{js,jsx}'",
     "lint": "eslint 'src/**/*.{js,jsx}'",

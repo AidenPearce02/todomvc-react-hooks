@@ -1,34 +1,30 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
+import { selectCompleted, selectNotCompleted, selectVisible } from '../../store/selectors/todo';
 import { FILTERS } from '../../constants/filter';
-import { selectCompleted, selectNotCompleted } from '../../store/selectors/todo';
-import { onClearCompleted } from '../../store/actions/todo';
 import { onFilterSelect } from '../../store/actions/filter';
 
 export function Footer() {
-  const filterTitles = [
-    { key: FILTERS.all, value: 'All' },
-    { key: FILTERS.active, value: 'Active' },
-    { key: FILTERS.completed, value: 'Completed' }
-  ];
-  const dispatch = useDispatch();
+  const allCount = useSelector(state => selectVisible(state.todos, FILTERS.all).length);
   const completedCount = useSelector(state => selectCompleted(state.todos).length);
-  const itemsLeft = useSelector(state => selectNotCompleted(state.todos).length);
-  const filter = useSelector(state => state.filter);
-  const clearCompleted = () => dispatch(onClearCompleted());
-  const filterSelect = selectedFilter => dispatch(onFilterSelect(selectedFilter));
+  const activeCount = useSelector(state => selectNotCompleted(state.todos).length);
 
-  const itemText = itemsLeft === 1 ? 'item' : 'items';
+  const filterTitles = [
+    { key: FILTERS.all, value: allCount },
+    { key: FILTERS.active, value: activeCount },
+    { key: FILTERS.completed, value: completedCount }
+  ];
+  const filter = useSelector(state => state.filter);
+
+  const dispatch = useDispatch();
+
+  const filterSelect = selectedFilter => dispatch(onFilterSelect(selectedFilter));
 
   return (
     <footer className="footer">
-      <span className="todo-count">
-        <strong>{itemsLeft}</strong>
-        <span> {itemText} left</span>
-      </span>
-      <ul className="filters">
-        {filterTitles.map(filterTitle => (
+      <ul className="filtersC">
+        {filterTitles.map((filterTitle, index) => (
           <li key={filterTitle.key}>
             <a
               href="./#"
@@ -37,14 +33,10 @@ export function Footer() {
             >
               {filterTitle.value}
             </a>
+            {index !== filterTitles.length - 1 && (<span>/</span>) }
           </li>
         ))}
       </ul>
-      {!!completedCount && (
-        <button className="clear-completed" onClick={clearCompleted}>
-          Clear completed
-        </button>
-      )}
     </footer>
   );
 }
